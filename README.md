@@ -1,2 +1,2 @@
-# TickTackTo
+# TickTackToe
 React/Redux Test project
