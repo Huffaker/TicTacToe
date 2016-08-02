@@ -4,7 +4,12 @@
   "description": "React/Redux Test project",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js  --recursive",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:dev": "webpack-dev-server --inline --content-base dist/ --history-api-fallback",
+    "start:prod": "npm run build",
+    "build:client": "webpack",
+    "build": "npm run build:client",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watch"
   },
   "repository": {
@@ -21,17 +26,34 @@
   "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
     "chai": "^3.5.0",
     "chai-immutable": "^1.6.0",
-    "mocha": "^3.0.0"
+    "jsdom": "^9.4.1",
+    "mocha": "^3.0.0",
+    "react-hot-loader": "^1.3.0",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   },
   "babel": {
     "presets": [
-      "es2015"
+      "es2015",
+      "react"
     ]
   },
   "dependencies": {
-    "immutable": "^3.8.1"
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "if-env": "^1.0.0",
+    "immutable": "^3.8.1",
+    "react": "^15.3.0",
+    "react-addons-pure-render-mixin": "^15.3.0",
+    "react-addons-test-utils": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.1",
+    "redux": "^3.5.2"
   }
 }
