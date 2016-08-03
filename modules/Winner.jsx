@@ -8,14 +8,14 @@ export default React.createClass({
         case 0:
             return <div className="winner">Cats Game!</div>
         case 1:
-            return <div className="winner">Winner is Team 1</div>;
+            return <div className="winner">Winner is Team O</div>;
         case 2:
-            return <div className="winner">Winner is Team 2</div>;
+            return <div className="winner">Winner is Team X</div>;
         default:
             if(this.props.playerTurn == 1)
-                return <div className="team">Turn: Team 1</div>
+                return <div className="team">Turn: Team O</div>
             else
-                return <div className="team">Turn: Team 2</div>
+                return <div className="team">Turn: Team X</div>
     }
   }
 });

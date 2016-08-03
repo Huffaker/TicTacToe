@@ -22,9 +22,19 @@ const mapStateToProps = (state) => {
     winner: state.get('winner')
   };
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        select: (entry) => {
+            dispatch(actionCreators.selectSquare(entry));
+            },
+        reset: () => {
+            dispatch(actionCreators.resetGame());
+        }
+    };
+};
 
 export const HomeContainer = connect(
   mapStateToProps,
-  actionCreators
+  mapDispatchToProps
 )(Home);
 
