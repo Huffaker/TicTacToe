@@ -9,7 +9,7 @@ const INITIAL_PLAYER = 1;
 //  2 = player 2 victory
 //  0 = draw
 //  -1 = no winner, game still active
-export function checkWinner(boardState) {
+function checkWinner(boardState) {
     // Row and Column cases
     for(let i = 0; i < 3; i++){
         if(boardState.getIn([i,0]) === boardState.getIn([i,1])
@@ -63,7 +63,11 @@ function getPlayerTurn(boardState) {
 
 export function selectSquare(state, entry) {
     // Check if game is still active
-    if(state.get('winner') > -1)
+    if(state.get('winner') > -1 )
+        return state;
+
+    // Check that this is the correct team
+    if(state.get('playerTurn',INITIAL_PLAYER) != entry.team)
         return state;
 
     // Initialize the board if it doesn't exist

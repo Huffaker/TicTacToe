@@ -8,7 +8,8 @@ describe('application logic', () => {
   describe('resetGame', () => {
       it('returns a fresh state when the game is over', () => {
         const state = Map({
-            winner: 1
+            winner: 1,
+            playerTurn: 1
         });
         const nextState = resetGame(state);
         expect(nextState.get('board')).to.equal(
@@ -17,7 +18,8 @@ describe('application logic', () => {
 
     it('returns the same state when the game is not over', () => {
         const state = Map({
-            winner: -1
+            winner: -1,
+            playerTurn: 1
         });
         const nextState = resetGame(state);
         expect(nextState).to.equal(state);
@@ -34,7 +36,7 @@ describe('application logic', () => {
 
     it('sets the board if none exists', () => {
       const state = Map();
-      const nextState = selectSquare(state, 1);
+      const nextState = selectSquare(state, {team: 1});
 
       expect(nextState.get('board')).to.equal(
           List.of(List.of(0,0,0),List.of(0,0,0),List.of(0,0,0))
@@ -49,6 +51,15 @@ describe('application logic', () => {
         expect(nextState.get('board')).to.equal(
             List.of(List.of(1,0,0),List.of(0,0,0),List.of(0,0,0))
         );
+    });
+
+    it('prevents player from playing if it is not their turn', () => {
+        const state = Map({
+            playerTurn: 1
+        });
+        const nextState = selectSquare(state, {row: 0, column: 0, team: 2});
+
+        expect(nextState).to.equal(state);
     });
 
     it('prevents player from claiming square if not available', () => {
@@ -117,7 +128,8 @@ describe('application logic', () => {
 
     it('determines if game is a draw', () => {
         const state = Map({
-            board: List.of(List.of(0,2,1),List.of(1,1,2),List.of(2,2,1))
+            board: List.of(List.of(0,2,1),List.of(1,1,2),List.of(2,2,1)),
+            playerTurn: 2
         });
         const nextState = selectSquare(state, {row: 0, column: 0, team: 2});
         
@@ -128,7 +140,8 @@ describe('application logic', () => {
 
     it('returns player one turn after player one and player two have made a move', () => {
         const state = Map({
-            board: List.of(List.of(0,0,0),List.of(0,1,0),List.of(0,0,0))
+            board: List.of(List.of(0,0,0),List.of(0,1,0),List.of(0,0,0)),
+            playerTurn: 2
         });
         const nextState = selectSquare(state, {row: 0, column: 0, team: 2});
         
@@ -146,7 +159,8 @@ describe('application logic', () => {
 
     it('still returns player two turn after player two attempts to take an already taken spot', () => {
         const state = Map({
-            board: List.of(List.of(0,0,0),List.of(0,1,0),List.of(0,0,0))
+            board: List.of(List.of(0,0,0),List.of(0,1,0),List.of(0,0,0)),
+            playerTurn: 2
         });
         const nextState = selectSquare(state, {row: 1, column: 1, team: 2});
         

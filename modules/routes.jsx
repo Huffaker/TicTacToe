@@ -1,10 +1,12 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import App from './App'
-import Home from './Home'
+import {HomeContainer} from './Home'
+import About from './About'
 
 module.exports = (
   <Route path="/" component={App}>
-    <IndexRoute component={Home}/>
+    <IndexRoute component={HomeContainer}/>
+    <Route path="/about" component={About}/>
   </Route>
 )
