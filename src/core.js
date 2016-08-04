@@ -77,17 +77,10 @@ export function selectSquare(state, entry) {
     const talled_board = board.getIn([entry.row, entry.column]) === 0
             ? board.setIn([entry.row, entry.column], entry.team):board;
 
-    // Check for a winner
-    const winner = checkWinner(talled_board);
-    if(winner > -1) {
-        return state.remove('board')
-                .remove('playerTurn')
-                .set('winner', winner);
-    }
-
     return state.merge({
         board: talled_board,
-        'playerTurn': getPlayerTurn(talled_board)
+        'playerTurn': getPlayerTurn(talled_board),
+        winner: checkWinner(talled_board)
     });
 }  
 

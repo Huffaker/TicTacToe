@@ -13,9 +13,9 @@ export default React.createClass({
             return <h3 className="winner">Winner is Team X</h3>;
         default:
             if(this.props.playerTurn == 1)
-                return <h3 className="team">Turn: Team O</h3>
+                return <h3 className="team">Current Turn: Team O</h3>
             else
-                return <h3 className="team">Turn: Team X</h3>
+                return <h3 className="team">Current Turn: Team X</h3>
     }
   }
 });

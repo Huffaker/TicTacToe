@@ -88,9 +88,7 @@ describe('application logic', () => {
         });
         const nextState = selectSquare(state, {row: 0, column: 0, team: 1});
         
-        expect(nextState).to.equal(Map({
-            winner: 1
-        }));
+        expect(nextState.get('winner')).to.equal(1);
     });
 
     it('finds winner if a column is taken', () => {
@@ -99,9 +97,7 @@ describe('application logic', () => {
         });
         const nextState = selectSquare(state, {row: 0, column: 0, team: 1});
         
-        expect(nextState).to.equal(Map({
-            winner: 1
-        }));
+        expect(nextState.get('winner')).to.equal(1);
     });
 
     it('finds winner if a diagonal is taken', () => {
@@ -110,9 +106,7 @@ describe('application logic', () => {
         });
         const nextState = selectSquare(state, {row: 0, column: 0, team: 1});
         
-        expect(nextState).to.equal(Map({
-            winner: 1
-        }));
+        expect(nextState.get('winner')).to.equal(1);
     });
 
     it('finds winner if the opposing diagonal is taken', () => {
@@ -121,9 +115,7 @@ describe('application logic', () => {
         });
         const nextState = selectSquare(state, {row: 0, column: 2, team: 1});
         
-        expect(nextState).to.equal(Map({
-            winner: 1
-        }));
+        expect(nextState.get('winner')).to.equal(1);
     });
 
     it('determines if game is a draw', () => {
@@ -133,9 +125,7 @@ describe('application logic', () => {
         });
         const nextState = selectSquare(state, {row: 0, column: 0, team: 2});
         
-        expect(nextState).to.equal(Map({
-            winner: 0
-        }));
+        expect(nextState.get('winner')).to.equal(0);
     });
 
     it('returns player one turn after player one and player two have made a move', () => {
