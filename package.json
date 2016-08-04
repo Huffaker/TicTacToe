@@ -6,9 +6,10 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:dev": "webpack-dev-server --inline --content-base dist/ --history-api-fallback",
-    "start:prod": "npm run build",
+    "start:prod": "npm run build && node dist/server.bundle.js",
     "build:client": "webpack",
-    "build": "npm run build:client",
+    "build:server": "webpack --config webpack.server.config.js",
+    "build": "npm run build:client && npm run build:server",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watch"
   },
