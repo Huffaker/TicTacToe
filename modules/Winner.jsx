@@ -6,16 +6,16 @@ export default React.createClass({
   render: function() {
     switch(this.props.winner) {
         case 0:
-            return <div className="winner">Cats Game!</div>
+            return <h3 className="winner">Cats Game!</h3>
         case 1:
-            return <div className="winner">Winner is Team O</div>;
+            return <h3 className="winner">Winner is Team O</h3>;
         case 2:
-            return <div className="winner">Winner is Team X</div>;
+            return <h3 className="winner">Winner is Team X</h3>;
         default:
             if(this.props.playerTurn == 1)
-                return <div className="team">Turn: Team O</div>
+                return <h3 className="team">Turn: Team O</h3>
             else
-                return <div className="team">Turn: Team X</div>
+                return <h3 className="team">Turn: Team X</h3>
     }
   }
 });

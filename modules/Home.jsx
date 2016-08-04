@@ -9,8 +9,8 @@ const Home = React.createClass({
   mixins: [PureRenderMixin],
   render: function() {
     return <div>
-        <Winner  ref="winner" winner={this.props.winner} playerTurn={this.props.playerTurn} />
         <Board {...this.props} />
+        <Winner ref="winner" winner={this.props.winner} playerTurn={this.props.playerTurn} />
     </div>;
   }
 });
