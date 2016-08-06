@@ -26,3 +26,5 @@ chrome-user-data
 .idea
 *.iml
 .vscode
+*.hot-update.json
+*.hot-update.js

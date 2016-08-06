@@ -82,14 +82,14 @@ export function selectSquare(state, entry) {
         'playerTurn': getPlayerTurn(talled_board),
         winner: checkWinner(talled_board)
     });
-}  
+}   
 
 export function resetGame(state) {
     // Check if game is still active
     if(state.get('winner') == -1)
         return state;
 
-    return state.remove('winner')
+    return state.set('winner', -1)
             .set('board', INITIAL_BOARD)
             .set('playerTurn', INITIAL_PLAYER);
 }

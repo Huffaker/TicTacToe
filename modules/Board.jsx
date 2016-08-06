@@ -62,19 +62,19 @@ var Tile = React.createClass({
 });
 
 export default React.createClass({
-  mixins: [PureRenderMixin],
-  render: function() {
-      let reset = '';
-        if(this.props.winner > -1) {
-            reset = <button onClick={()=>
-                    this.props.reset()
-                }>Reset</button>;
-        }
-        return <div className="board">
-            {this.props.board.map((row,rowID)=> {
-	            return	<Row key={rowID} rowID={rowID} row={row} {...this.props} />;
-            })} {reset}
-            </div> ;
+    mixins: [PureRenderMixin],
+    render: function() {
+        let reset = '';
+            if(this.props.winner > -1) {
+                reset = <button onClick={()=>
+                        this.props.reset()
+                    }>Reset</button>;
+            }
+            return <div className="board">
+                {this.props.board.map((row,rowID)=> {
+                    return	<Row key={rowID} rowID={rowID} row={row} {...this.props} />;
+                })} {reset}
+                </div> ;
   }
 });
 
