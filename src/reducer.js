@@ -1,11 +1,19 @@
-import {selectSquare, resetGame, INITIAL_STATE} from './core';
+import {selectSquare, resetGame, addNewPlayer, removePlayer, addSocket, updatePlayerName, INITIAL_STATE} from './core';
 
 export default function reducer(state = INITIAL_STATE, action) {
-  switch (action.type) {
-  case 'SELECT':
-    return selectSquare(state, action.entry);
-  case 'RESET':
-    return resetGame(state);
+  if(action.type == 'SELECT')
+    return selectSquare(state, action.entry, action.socketId);
+  else if(action.type == 'RESET')
+      return resetGame(state);
+  else if(action.type == 'ADD_PLAYER')
+      return updatePlayerName(state, action.socketId, action.playerName);
+  else if(action.meta && !action.meta.remote) {
+    switch(action.type ) {
+      case 'ADD_SOCKET':
+        return addSocket(state, action.socketId);
+      case 'REMOVE_PLAYER':
+        return removePlayer(state, action.socketId);
+    }
   }
   return state;
 }

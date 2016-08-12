@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:dev": "nodemon --watch server --watch config --watch src --watch modules ./dist/www",
+    "start:dev": "nodemon --watch server --watch config --watch src --watch modules --watch client ./dist/www",
     "start:prod": "npm run build && node dist/server.bundle.js",
     "build:client": "webpack",
     "build:server": "webpack --config webpack.server.config.js",
@@ -55,6 +55,7 @@
     "express": "^4.14.0",
     "if-env": "^1.0.0",
     "immutable": "^3.8.1",
+    "node-uuid": "^1.4.7",
     "react": "^15.3.0",
     "react-addons-pure-render-mixin": "^15.3.0",
     "react-addons-test-utils": "^15.3.0",
