@@ -154,7 +154,11 @@ export function removePlayer(state, playerId) {
         let newChampState = state.set('crowd', state.get('crowd', Map()).butLast());
         return newChampState.set('champion', Map(replacement));
     }
-    else {
+    else if(state.get('crowd', Map()).get(playerId.toString())) {
         return state.deleteIn(['crowd', playerId.toString()]);
     }
+    else if(state.get('pendingPlayers', Map()).get(playerId.toString())) {
+        return state.deleteIn(['pendingPlayers', playerId.toString()]);
+    }
+    return state;
 }

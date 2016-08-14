@@ -81,7 +81,7 @@ function createWebApplication(logging = true) {
           store.dispatch({
               type: 'REMOVE_PLAYER',
               meta: {remote: false},
-              playerId: socketId
+              socketId: socketId
           });
           delete sockets[socketId];
         });
