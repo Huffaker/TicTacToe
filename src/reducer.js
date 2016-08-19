@@ -12,7 +12,6 @@ export default function reducer(state = INITIAL_STATE, action) {
       case 'ADD_SOCKET':
         return addSocket(state, action.socketId);
       case 'REMOVE_PLAYER':
-        console.log('removing player');
         return removePlayer(state, action.socketId);
     }
   }

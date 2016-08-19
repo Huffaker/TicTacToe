@@ -92,7 +92,7 @@ function createWebApplication(logging = true) {
       // Destroy all open sockets
       for (var socketId in sockets) {
         if(sockets[socketId]){
-            sockets[socketId].close();
+            sockets[socketId].disconnect();
             console.log('socket', socketId, 'destroyed');
         }
       }
