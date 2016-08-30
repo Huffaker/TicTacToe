@@ -1,4 +1,5 @@
 import {List, Map} from 'immutable';
+import {gameState} from './state_enums';
 
 export const INITIAL_STATE = Map();
 const INITIAL_BOARD = List.of(List.of(0,0,0),List.of(0,0,0),List.of(0,0,0));
@@ -69,9 +70,9 @@ export function selectSquare(state, entry, playerId) {
     // Get the current players team
     if(!playerId)
         return state;
-    let team = 2;
+    let team = gameState().TEAM_2;
     if(state.getIn(['champion', 'id']) === playerId)
-        team = 1;
+        team = gameState().TEAM_1;
     // Check if they are a registered player
     else if(!state.get('crowd', Map()).get(playerId.toString()))
         return state;

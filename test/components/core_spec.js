@@ -1,6 +1,7 @@
 import {List, Map} from 'immutable';
 import {expect} from 'chai';
-import {mockState, gameState} from './state_mock';
+import {mockState} from './state_mock';
+import {gameState} from '../../src/state_enums';
 
 import {selectSquare, resetGame, addNewPlayer, removePlayer, updatePlayerName} from '../../src/core';
 
