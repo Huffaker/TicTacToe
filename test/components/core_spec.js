@@ -3,7 +3,7 @@ import {expect} from 'chai';
 import {mockState} from './state_mock';
 import {gameState} from '../../src/state_enums';
 
-import {selectSquare, resetGame, addNewPlayer, removePlayer, updatePlayerName} from '../../src/core';
+import {selectSquare, resetGame, addNewPlayer, removePlayer, updatePlayerName, swapChampion} from '../../src/core';
 
 describe('application logic', () => {
 
@@ -189,6 +189,13 @@ describe('application logic', () => {
                 .set('crowd',Map({ 2: Map({id: 2})}));;
         const nextState = removePlayer(state, 2);
         expect(nextState.get('crowd')).to.equal(Map())
+      });
+    });
+
+    describe('swapChampion', () => {
+      it('swaps the champion out for a member of the crowd', () => {
+        const state = mockState();
+        
       });
     });
 });

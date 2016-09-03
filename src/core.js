@@ -62,10 +62,16 @@ function getPlayerTurn(boardState) {
     return playerOneCount > playerTwoCount? 2:1;
 }
 
+function getValidMove(boardState, entry) {
+    if(boardState.getIn([entry.row, entry.column]) > 0)
+        return false;
+    return true;
+}
+
 // Update the crowdPlayer vote and determine if consensus has been reached
 function getCrowdVote(state, entry, playerId) {
     // Check if entry is valid move
-    if(state.getIn(['board', entry.row, entry.column]) > 0)
+    if(!getValidMove(state.get('board'), entry))
         return state;
 
     let voteState = state.setIn(['crowd', playerId.toString(), 'vote'], Map(entry));
@@ -138,7 +144,7 @@ export function selectSquare(state, entry, playerId) {
     }
 
     // Update the square selected if it is available
-    const talled_board = board.getIn([entry.row, entry.column]) === 0
+    const talled_board = getValidMove(board, entry)
             ? board.setIn([entry.row, entry.column], team):board;
 
     return state.merge({
@@ -214,5 +220,9 @@ export function removePlayer(state, playerId) {
     else if(state.get('pendingPlayers', Map()).get(playerId.toString())) {
         return state.deleteIn(['pendingPlayers', playerId.toString()]);
     }
+    return state;
+}
+
+export function swapChampion(state) {
     return state;
 }
