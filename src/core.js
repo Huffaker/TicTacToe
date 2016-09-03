@@ -62,6 +62,49 @@ function getPlayerTurn(boardState) {
     return playerOneCount > playerTwoCount? 2:1;
 }
 
+// Update the crowdPlayer vote and determine if consensus has been reached
+function getCrowdVote(state, entry, playerId) {
+    // Check if entry is valid move
+    if(state.getIn(['board', entry.row, entry.column]) > 0)
+        return state;
+
+    let voteState = state.setIn(['crowd', playerId.toString(), 'vote'], Map(entry));
+    let crowdSize = voteState.get('crowd').count();
+    let votes = voteState.get('crowd').filter(x=> x.get('vote') && x.get('vote') != null).count();
+
+    // Check for consensus
+    // Requires greater then 80%
+    if(votes/crowdSize < .8 )
+        return voteState;
+    
+    // Find popular vote
+    let entries = voteState.get('crowd').map(x=> x.getIn(['vote', 'row']) + '-' + x.getIn(['vote', 'column']));
+    let groups = Map();
+    entries.forEach(a=> {
+        groups = groups.setIn([a,'count'], groups.getIn([a, 'count'], 0) + 1);
+        groups = groups.setIn([a, 'id'],a)
+    });
+    let consensus = null;
+    let tally = 0;
+    let sortGroup = groups.forEach(a => {
+        if(a.get('count') > tally){
+            tally = a.get('count');
+            consensus = a.get('id');
+        }
+    });
+
+    // Now that we have a consensus, reset crowd votes
+    voteState.get('crowd').forEach(a=> {
+        voteState = voteState.setIn(['crowd', a.get('id').toString(), 'vote'], null);
+    });
+
+    return voteState
+        .set('consensus', {
+            row: consensus.split('-')[0],
+            column: consensus.split('-')[1]
+        });
+}
+
 export function selectSquare(state, entry, playerId) {
     // Check if game is still active
     if(state.get('winner') > -1 )
@@ -83,6 +126,16 @@ export function selectSquare(state, entry, playerId) {
 
     // Initialize the board if it doesn't exist
     const board = state.get('board', INITIAL_BOARD);
+
+    // If it is the crowd, check for a consensus
+    if(team == gameState().TEAM_2) {
+        state = getCrowdVote(state, entry, playerId);
+        if (state.get('consensus') != null) {
+            entry = state.get('consensus');
+        }
+        else
+         return state;
+    }
 
     // Update the square selected if it is available
     const talled_board = board.getIn([entry.row, entry.column]) === 0

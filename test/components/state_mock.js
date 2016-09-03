@@ -6,7 +6,11 @@ export function mockState() {
         playerTurn: 1,
         winner: -1,
         champion: Map({id: 1}),
-        crowd: Map({2:Map({id: 2})}),
-        pendingPlayers: Map({3:{id: 3}})
+        crowd: Map({ 2: Map({id: 2}), 
+            3: Map({id: 3, vote: Map({row: 1, column: 1}) }), 
+            4: Map({id: 4, vote: Map({row: 1, column: 1}) })
+        }),
+        concensus: null,
+        pendingPlayers: Map({3:Map({id: 3})})
     });
 }

@@ -113,7 +113,8 @@ describe('application logic', () => {
     it('determines if game is a draw', () => {
         const state = mockState()
             .set('board', List.of(List.of(0,2,1),List.of(1,1,2),List.of(2,2,1)))
-            .set('playerTurn',2);
+            .set('playerTurn',2)
+            .set('crowd',Map({ 2: Map({id: 2})}));
 
         const nextState = selectSquare(state, {row: 0, column: 0},2);
         expect(nextState.get('winner')).to.equal(gameState().DRAW);
@@ -171,7 +172,8 @@ describe('application logic', () => {
 
     describe('removePlayer', () => {
       it('replaces the player if they were champion', () => {
-        const state = mockState();
+        const state = mockState()
+                    .set('crowd',Map({ 2: Map({id: 2})}));;
         const nextState = removePlayer(state, 1);
         expect(nextState.getIn(['champion','id'])).to.equal(2);
         expect(nextState.get('crowd')).to.equal(Map());
@@ -183,7 +185,8 @@ describe('application logic', () => {
         expect(nextState.get('crowd')).to.equal(Map());
       });
       it('removes the crowd player if they are in the crowd', () => {
-        const state = mockState();
+        const state = mockState()
+                .set('crowd',Map({ 2: Map({id: 2})}));;
         const nextState = removePlayer(state, 2);
         expect(nextState.get('crowd')).to.equal(Map())
       });
