@@ -69,7 +69,8 @@ function createWebApplication(logging = true) {
 
         store.subscribe(
             () => {
-              console.log('Emit new State: ' + store.getState());
+              //console.log('Emit new State: ' + store.getState());
+              console.log('Emit clean State: ' + cleanState(store.getState(), socketId));
               socket.emit('state', cleanState(store.getState(), socketId).toJS())
             }
         );

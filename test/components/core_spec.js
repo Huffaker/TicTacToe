@@ -193,9 +193,12 @@ describe('application logic', () => {
     });
 
     describe('swapChampion', () => {
-      it('swaps the champion out for a member of the crowd', () => {
+      it('swaps the champion out for top scoring member of the crowd', () => {
         const state = mockState();
-        
+        console.log(state);
+        const nextState = swapChampion(state);
+        console.log(nextState);
+        expect(nextState.getIn(['champion','id'])).to.equal(4);
       });
     });
 });
