@@ -43374,7 +43374,7 @@
 	      _react2.default.createElement(
 	        'h1',
 	        null,
-	        'Lets Play Tick Tack Toe!'
+	        'Lets Play Tic Tac Toe!'
 	      ),
 	      this.props.children
 	    );

@@ -1,5 +1,5 @@
 {
-  "name": "TickTackToe",
+  "name": "TicTacToe",
   "version": "1.0.0",
   "description": "React/Redux Test project",
   "main": "index.js",
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Huffaker/TickTackToe.git"
+    "url": "git+https://github.com/Huffaker/TicTacToe.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Huffaker/TickTackToe/issues"
+    "url": "https://github.com/Huffaker/TicTacToe/issues"
   },
-  "homepage": "https://github.com/Huffaker/TickTackToe#readme",
+  "homepage": "https://github.com/Huffaker/TicTacToe#readme",
   "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-core": "^6.11.4",
