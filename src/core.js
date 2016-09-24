@@ -71,13 +71,16 @@ function getValidMove(boardState, entry) {
 
 // Update the crowdPlayer vote and determine if consensus has been reached
 function getCrowdVote(state, entry, playerId) {
+    console.log(state)
+    console.log(entry)
+    console.log(playerId)
     // Check if entry is valid move
     if(!getValidMove(state.get('board'), entry))
         return state;
 
     let voteState = state.setIn(['crowd', playerId.toString(), 'vote'], Map(entry));
     let crowdSize = voteState.get('crowd').count();
-    let votes = voteState.get('crowd').filter(x=> x.get('vote') && x.get('vote') != null).count();
+    let votes = voteState.get('crowd').filter(x=> x.get('vote', null) != null).count();
 
     // Check for consensus
     // Requires greater then 80%
@@ -100,19 +103,20 @@ function getCrowdVote(state, entry, playerId) {
         }
     });
     // Update the consensus
-    consensus = {
+    consensus = Map({
             row: consensus.split('-')[0],
             column: consensus.split('-')[1]
-    };
+    });
 
     // Now that we have a consensus, reset crowd votes
     voteState.get('crowd').forEach(a=> {
-        // If crowd member voted with the crowd, give them a point!
-        if(voteState.getIn(['crowd', a.get('id').toString(), 'vote','row'], null) == consensus.row
-            && voteState.getIn(['crowd', a.get('id').toString(), 'vote','column'], null) == consensus.column) {
+        // If crowd member voted with the crowd, give them a point!      
+        if(voteState.getIn(['crowd', a.get('id').toString(), 'vote','row'], null).toString() === consensus.get('row')
+            && voteState.getIn(['crowd', a.get('id').toString(), 'vote','column'], null).toString() === consensus.get('column')) {
             voteState = voteState.setIn(['crowd', a.get('id').toString(), 'points'],
                 voteState.getIn(['crowd', a.get('id').toString(), 'points'],0) +1 );
         }
+        
         voteState = voteState.setIn(['crowd', a.get('id').toString(), 'vote'], null);
     });
 
@@ -153,7 +157,7 @@ export function selectSquare(state, entry, playerId) {
 
     // Update the square selected if it is available
     const talled_board = getValidMove(board, entry)
-            ? board.setIn([entry.row, entry.column], team):board;
+            ? board.setIn([Map(entry).get('row'), Map(entry).get('column')], team):board;
 
     return state.merge({
         board: talled_board,
@@ -190,6 +194,7 @@ export function resetGame(state) {
     }
 
     return resetState.set('winner', -1)
+            .remove('consensus')
             .set('board', INITIAL_BOARD)
             .set('playerTurn', INITIAL_PLAYER);
 }

@@ -45,7 +45,7 @@ function createWebApplication(logging = true) {
         // Add a newly connected socket
         var socketId = uuid.v4();
         sockets[socketId] = socket;
-        console.log('socket', socketId, 'opened');
+        //console.log('socket', socketId, 'opened');
 
         // Add player to game
         store.dispatch({
@@ -63,14 +63,14 @@ function createWebApplication(logging = true) {
         socket.on('action',(action) => {
             action.socketId = socketId;
             action.meta = { remote: true};
-            console.log(action);
+            //console.log(action);
             store.dispatch(action);
         });
 
         store.subscribe(
             () => {
               //console.log('Emit new State: ' + store.getState());
-              console.log('Emit clean State: ' + cleanState(store.getState(), socketId));
+             // console.log('Emit clean State: ' + cleanState(store.getState(), socketId));
               socket.emit('state', cleanState(store.getState(), socketId).toJS())
             }
         );

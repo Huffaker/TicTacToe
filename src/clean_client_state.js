@@ -5,7 +5,7 @@ import {List, Map} from 'immutable';
     prior to returning it to the client. We are also keeping
     the playerId private to the server.
 */
-export default function cleanClientState(state, playerId) {
+export default function cleanClientState(state, playerId) {    
     if(state.getIn(['champion', 'id']) == playerId.toString())
         return state.remove('crowd')
                 .remove('champion')
@@ -14,7 +14,6 @@ export default function cleanClientState(state, playerId) {
                 .set('profile', state.get('champion'));
     else if(state.get('pendingPlayers', Map()).get(playerId.toString()))
         return state.remove('crowd').remove('champion').remove('pendingPlayers').set('team','pending');
-
     return state
         .remove('champion')
         .remove('crowd')
