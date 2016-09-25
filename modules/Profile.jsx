@@ -11,12 +11,13 @@ export default React.createClass({
         return <div>
                     {playerName}
                     <h3>Crowd Points: {points}</h3>
+                    <h4>Career Champion Wins: {this.props.profile.get('totalwins',0)}</h4>
                 </div>;
     }
     return <div>
             <h2>Player: {this.props.profile.get('name')}</h2>
             <h4>Current Win Streak: {this.props.profile.get('streak',0)}</h4>
-            <h4>Total Wins: {this.props.profile.get('totalwins',0)}</h4>
+            <h4>Career Champion Wins: {this.props.profile.get('totalwins',0)}</h4>
             <h4>Current tie games: {this.props.profile.get('ties',0)}</h4>
             <h4>Careful! 5 tie games and you will be de-throned as champion!</h4>
         </div>;

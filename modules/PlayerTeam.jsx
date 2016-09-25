@@ -5,7 +5,13 @@ export default React.createClass({
   mixins: [PureRenderMixin],
   render: function() {
       if(this.props.team == 'champion')
-        return <h2>You are the current Champion</h2>
-    return <h2>You are of the Crowd</h2>
+        return <div>
+          <h2>Welcome {this.props.profile.get('name')}</h2>
+          <h3>You are the current Champion</h3>
+          </div>
+    return <div>
+              <h2>Welcome {this.props.profile.get('name')}</h2>
+              <h3>You are of the Crowd</h3>
+          </div>
   }
 });

@@ -71,9 +71,6 @@ function getValidMove(boardState, entry) {
 
 // Update the crowdPlayer vote and determine if consensus has been reached
 function getCrowdVote(state, entry, playerId) {
-    console.log(state)
-    console.log(entry)
-    console.log(playerId)
     // Check if entry is valid move
     if(!getValidMove(state.get('board'), entry))
         return state;
