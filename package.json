@@ -4,7 +4,7 @@
   "description": "React/Redux Test project",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node dist/server.bundle.js",
+    "start": "node dist/server.bundle.js",
     "start:dev": "nodemon --watch server --watch config --watch src --watch modules --watch client ./dist/www",
     "build:client": "webpack",
     "build:server": "webpack --config webpack.server.config.js",
