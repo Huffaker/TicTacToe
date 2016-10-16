@@ -4,9 +4,8 @@
   "description": "React/Redux Test project",
   "main": "index.js",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start": "npm run build && node dist/server.bundle.js",
     "start:dev": "nodemon --watch server --watch config --watch src --watch modules --watch client ./dist/www",
-    "start:prod": "npm run build && node dist/server.bundle.js",
     "build:client": "webpack",
     "build:server": "webpack --config webpack.server.config.js",
     "build": "npm run build:client && npm run build:server",
