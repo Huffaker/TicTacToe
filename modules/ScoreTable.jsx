@@ -8,6 +8,9 @@ export default React.createClass({
             console.log(index);
             return <div key={index}>{player.get('playerName')}: {player.get('wins')}</div>;
         });
-        return <div><div key="-1">Score Table</div>{playerTable}</div>
+        return <div>
+                <h3  key="-1">Win Streak Score Table</h3>
+                {playerTable}
+            </div>
     }
 });

@@ -8,16 +8,17 @@ export default React.createClass({
   onInputChange: function(e) {
     this.setState({tempScreenName: e.target.value});
   },
-  onSumbit: function() {
-        this.props.login({
-            playerName: this.state.tempScreenName
+  onSubmit: function(e,r) {
+        e.preventDefault();
+        r.props.login({
+            playerName: r.state.tempScreenName
         })
   },
   render: function() {
-    return <div>
+    return <form  onSubmit={(e,r)=>this.onSubmit(e,this)} >
             <h2>Enter your ScreenName:</h2>
             <input type="text" onChange={this.onInputChange} />
-            <button onClick={this.onSumbit}>Submit</button>
-        </div>;
+            <input type="submit" />
+        </form>;
   }
 });

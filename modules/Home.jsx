@@ -16,12 +16,18 @@ const Home = React.createClass({
       return <h2>Loading...</h2>;
     if(this.props.team == 'pending')
       return <Login {...this.props} />;
-    return <div>
-        <PlayerTeam team ={this.props.team} profile={this.props.profile}/>
-        <Board {...this.props} />
-        <Winner ref="winner" winner={this.props.winner} playerTurn={this.props.playerTurn} />
-        <Profile ref="profile" profile={this.props.profile} team ={this.props.team}/>
-        <ScoreTable scoreTable={this.props.scoreTable} />
+    return <div className='container'>
+          <div className='row'>
+            <div className='col-md-8'>
+              <PlayerTeam team ={this.props.team} profile={this.props.profile}/>
+              <Winner ref="winner" winner={this.props.winner} playerTurn={this.props.playerTurn} />
+              <Board {...this.props} />
+            </div>
+            <div className='col-md-4' >
+              <Profile ref="profile" profile={this.props.profile} team ={this.props.team}/>
+              <ScoreTable scoreTable={this.props.scoreTable} />
+            </div>
+          </div>
     </div>;
   }
 });

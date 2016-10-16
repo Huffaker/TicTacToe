@@ -3,19 +3,17 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 export default React.createClass({
   render: function() {
-    let playerName = <h2>Player: {this.props.profile.get('name')}</h2>;
-
     if(this.props.team === 'crowd') {
         let points = this.props.profile.get('points');
         points = points?points:0;
         return <div>
-                    {playerName}
-                    <h3>Crowd Points: {points}</h3>
+                    <h3>Profile: {this.props.profile.get('name')}</h3>
+                    <h4>Crowd Points: {points}</h4>
                     <h4>Career Champion Wins: {this.props.profile.get('totalwins',0)}</h4>
                 </div>;
     }
     return <div>
-            <h2>Player: {this.props.profile.get('name')}</h2>
+            <h3>Profile: {this.props.profile.get('name')}</h3>
             <h4>Current Win Streak: {this.props.profile.get('streak',0)}</h4>
             <h4>Career Champion Wins: {this.props.profile.get('totalwins',0)}</h4>
             <h4>Current tie games: {this.props.profile.get('ties',0)}</h4>

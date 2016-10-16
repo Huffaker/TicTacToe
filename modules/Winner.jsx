@@ -8,9 +8,9 @@ export default React.createClass({
             case 0:
                 return <h3 className="winner">Cats Game!</h3>
             case 1:
-                return <h3 className="winner">Winner is Team O</h3>;
+                return <h3 className="winner">The Champion wins!</h3>;
             case 2:
-                return <h3 className="winner">Winner is Team X</h3>;
+                return <h3 className="winner">The Crowd wins!</h3>;
             default:
                 if(this.props.playerTurn == 1)
                     return <h3 className="team">Current Turn: Champion</h3>
