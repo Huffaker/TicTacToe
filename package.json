@@ -4,7 +4,7 @@
   "description": "React/Redux Test project",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/www",
+    "start": "node ./dist/www",
     "start:dev": "nodemon --watch server --watch config --watch src --watch modules --watch client ./dist/www",
     "build": "node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack.config.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
