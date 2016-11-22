@@ -11,7 +11,7 @@ var path = require('path'),
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'react-hot!babel'
+      loader: process.env.NODE_ENV === 'development'? 'react-hot!babel' : 'babel-loader'
     }]
   },
   resolve: {
@@ -25,7 +25,7 @@ var path = require('path'),
 
 };
 
-//if (config.env === 'development') {
+if (process.env.NODE_ENV === 'development') {
   configuration.entry = [
       'webpack/hot/dev-server',
       'webpack-hot-middleware/client',
@@ -36,6 +36,6 @@ var path = require('path'),
     new webpack.HotModuleReplacementPlugin()
   ]
 
-//}
+}
 
 module.exports = configuration;

@@ -12,7 +12,7 @@ import webpackConfig from '../webpack.config.js';
  * @returns {express.Router} the express application
  */
 function linkStaticFiles(app) {
-    //if (config.env === 'development') {
+    if (process.env.NODE_ENV === 'development') {
         var compiler = webpack(webpackConfig);
 
         app.use(devServer(compiler, {
@@ -28,14 +28,14 @@ function linkStaticFiles(app) {
             path: '/__webpack_hmr',
             heartbeat: 10 * 1000,
         }));
-    // } else {
-    //     app.use(staticFiles('dist', {
-    //         dotfile: 'ignore',
-    //         etag: true,
-    //         index: false,
-    //         lastModified: true
-    //     }));
-    // }
+    } else {
+        app.use(staticFiles('dist', {
+            dotfile: 'ignore',
+            etag: true,
+            index: false,
+            lastModified: true
+        }));
+    }
 
     return app;
 }
