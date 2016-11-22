@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./server.js",
     "start:dev": "nodemon --watch server --watch config --watch src --watch modules --watch client ./server.js",
-    "build": "node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack.config.js",
+    "build": "node ./node_modules/webpack/bin/webpack.js --config webpack.config.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watch"
   },

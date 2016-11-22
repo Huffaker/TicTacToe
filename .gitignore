@@ -28,3 +28,4 @@ chrome-user-data
 .vscode
 *.hot-update.json
 *.hot-update.js
+.bundle.js
