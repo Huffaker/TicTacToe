@@ -19,7 +19,7 @@ var path = require('path'),
   },
   output: {
     path: __dirname + '/dist',
-    publicPath: 'http://localhost:8080/',
+    publicPath: process.env.NODE_ENV === 'development'? 'http://localhost:8080/' : 'http://localhost:80/',
     filename: 'bundle.js'
   },
 

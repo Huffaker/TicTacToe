@@ -11,7 +11,7 @@ import remoteActionMiddleware from '../client/remote_action_middleware';
 import {setState} from '../src/action_creators';
 
 
-const socket = io(`${location.protocol}//${location.hostname}:8090`);
+const socket = io(`${location.protocol}//${location.hostname}:443`);
 socket.on('state', state =>
   store.dispatch(setState(state))
 );

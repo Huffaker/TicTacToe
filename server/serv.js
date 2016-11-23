@@ -37,7 +37,7 @@ function createWebApplication(logging = true) {
 
     store.dispatch({ type: 'RESET' });
 
-    const io = new Server().attach(8090);
+    const io = new Server().attach(443);
 
     var sockets = {};
     io.on('connection', (socket) => {
